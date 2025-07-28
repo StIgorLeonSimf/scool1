@@ -43,6 +43,8 @@ as – add shelf – команда, которая спросит номер н
  и добавит ее в перечень. Предусмотрите случай, когда
  пользователь добавляет полку, которая уже существует.;
  """
+
+
 def people():
     """Поиск персоны по номеру документа."""
     print(people.__doc__)
@@ -64,16 +66,47 @@ def shelf():
             return
     print(f'Документ с номером {numb} в архиве не найден.')
 
-commands = '''    Оглавление
+
+def list():
+    """Листинг документов."""
+    print(list.__doc__)
+    max_numb = max(document, key=lambda x: len(x.get('number')))
+    # print(max_numb)
+    mx = len(max_numb.get('number'))
+    for i in document:
+        long = " " * (mx - len(i["number"]))
+        print(f'{i["type"]:9} "{i["number"]}" {long} "{i["name"]}"')
+
+
+def add():
+    """Добавление документа."""
+    print(add.__doc__)
+    d = {}
+    d['type'] = input("Тип документа: ")
+    d['number'] = input("Номер документа: ")
+    d['name'] = input("Владелец документа: ")
+    number_shelf = input("Номер полки: ")
+    document.append(d)
+    if number_shelf in directories:
+        directories[number_shelf].append(d['number'])
+        print(f'' )
+
+commands = '''    Оглавлениеl
 Поиск персоны по номеру документа - p;
 Место хранения документа          - s;
+Листинг документов                - l;
 > '''
 while True:
     com = input(commands)
     match com.lower():
-        case 'p': people()
-        case 's': shelf()
-        case 'exit': break
+        case 'p':
+            people()
+        case 's':
+            shelf()
+        case 'l':
+            list()
+        case 'exit':
+            break
     print()
     print('-------------------------------------')
     print()

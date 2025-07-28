@@ -77,6 +77,7 @@ denr.grid(row=2, column=5)
 
 def func(event):
     opn = oper.get().strip()
+    intr.config(text='')
     nm1 = int(num1.get().strip())
     dn1 = int(den1.get().strip())
     nm2 = int(num2.get().strip())
@@ -102,10 +103,14 @@ def func(event):
         denr.config(text='')
         return
     if n > d:
-
         it = n // d
         n %= d
         intr['text'] = it
+    if n == 0:
+        n = ''
+    if d == 1:
+        d = ''
+
     numr.config(text=n)
     denr.config(text=d)
 

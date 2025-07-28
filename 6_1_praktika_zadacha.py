@@ -16,12 +16,21 @@ dic = {}
 
 for i in films:
     count_words = len(i.split())
-    if not count_words in dic:
-        dic[count_words] = 1
-    else:
-        dic[count_words] += 1
+    # if not count_words in dic:
+    #     dic[count_words] = 1
+    # else:
+    #     dic[count_words] += 1
+    dic[len(i.split())] = dic.get(len(i.split()), 0) + 1
 
-for k, v in dic.items():
+print(dic)
+res1 = sorted(dic.items(), reverse=True)
+print(res1)
+for k, v in res1:
     percentage = v / len(films)
     print(f'В {percentage:.2%} фильмов количество слов в названии = {k}')
-    
+
+res2 = sorted(dic.items(), key=lambda x: x[1], reverse=True)
+print(res2)
+for k, v in res2:
+    percentage = v / len(films)
+    print(f'В {percentage:.2%} фильмов количество слов в названии = {k}')

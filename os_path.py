@@ -27,9 +27,13 @@ def seek(target, target1=''):
             size += os.path.getsize(ps)
         else:
             cnt_folders += 1
-            cnt_folders += seek(ps)[1]
-            size += seek(ps)[0]
-            cnt_files += seek(ps)[2]
+            # cnt_folders += seek(ps)[1]
+            # size += seek(ps)[0]
+            # cnt_files += seek(ps)[2]
+            size1, cnt_folders1, cnt_files1 = seek(ps)
+            size += size1
+            cnt_folders += cnt_folders1
+            cnt_files += cnt_files1
 
 
     return size, cnt_folders, cnt_files
