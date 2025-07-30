@@ -86,15 +86,17 @@ def add():
     d['number'] = input("Номер документа: ")
     d['name'] = input("Владелец документа: ")
     number_shelf = input("Номер полки: ")
+    while number_shelf not in directories:
+        number_shelf = input("введите правильный номер полки: ")
     document.append(d)
-    if number_shelf in directories:
-        directories[number_shelf].append(d['number'])
-        print(f'' )
+    directories[number_shelf].append(d['number'])
+    print(f'Документ с номером {number_shelf} добавлен!')
 
 commands = '''    Оглавлениеl
 Поиск персоны по номеру документа - p;
 Место хранения документа          - s;
 Листинг документов                - l;
+Добавление документа              - a;   
 > '''
 while True:
     com = input(commands)
@@ -105,6 +107,8 @@ while True:
             shelf()
         case 'l':
             list()
+        case 'a':
+            add()
         case 'exit':
             break
     print()
