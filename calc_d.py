@@ -21,6 +21,9 @@ def add(n1, d1, n2, d2):
         ng2 = n2 * d1
         d = d1 * d2
         n = ng1 + ng2
+    else:
+        d = d1
+        n = n1 + n2
     return n, d
 
 
@@ -31,6 +34,9 @@ def sub(n1, d1, n2, d2):
         ng2 = n2 * d1
         d = d1 * d2
         n = ng1 - ng2
+    else:
+        d = d1
+        n = n1 - n2
     return n, d
 
 
@@ -116,4 +122,5 @@ def func(event):
 
 
 eqv.bind('<Button-1>', func)
+# n = 1
 root.mainloop()
