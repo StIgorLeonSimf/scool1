@@ -92,11 +92,52 @@ def add():
     directories[number_shelf].append(d['number'])
     print(f'Документ с номером {number_shelf} добавлен!')
 
+
+def delete():
+    """Удаление документа."""
+    print(delete.__doc__)
+    numb = input('Введите номер документа: ')
+    for k, item in enumerate(document):
+        if item['number'] == numb:
+            for doc_numbs in directories.values():
+                if numb in doc_numbs:
+                    doc_numbs.remove(numb)
+                    document.pop(k)
+                    break
+            else:
+                print(f'Нет документа на полках ')
+            return
+
+    print(f'Нет человека с номером документа {numb}')
+
+
+def move():
+    """Перемещение документа."""
+    print(move.__doc__)
+    numb = input('Введите номер документа: ')
+    for n_doc in directories.values():
+        if numb in n_doc:
+            n_shelf = input('Введите номер целевой полки: ')
+            try:
+                directories[n_shelf].append(numb)
+                n_doc.remove(numb)
+            except Exception:
+                print(f'Нет полки с номером {n_doc}')
+
+
+
+
+    print(f'Документ {numb} на полках отсутствует!')
+
+
+
+
 commands = '''    Оглавлениеl
 Поиск персоны по номеру документа - p;
 Место хранения документа          - s;
 Листинг документов                - l;
 Добавление документа              - a;   
+Удаление документа                - d;
 > '''
 while True:
     com = input(commands)
@@ -109,6 +150,8 @@ while True:
             list()
         case 'a':
             add()
+        case 'd':
+            delete()
         case 'exit':
             break
     print()
