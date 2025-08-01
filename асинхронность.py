@@ -30,7 +30,6 @@ async def f1(x):
     await asyncio.sleep(x)
     print('F1 работу закончила')
 
-
 async def f2(x):
     print(x ** 2)
     await asyncio.sleep(x)

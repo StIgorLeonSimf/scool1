@@ -122,9 +122,7 @@ def move():
                 directories[n_shelf].append(numb)
                 n_doc.remove(numb)
             except Exception:
-                print(f'Нет полки с номером {n_doc}')
-
-
+                print(f'Нет полки с номером {n_doc}'
 
 
     print(f'Документ {numb} на полках отсутствует!')
